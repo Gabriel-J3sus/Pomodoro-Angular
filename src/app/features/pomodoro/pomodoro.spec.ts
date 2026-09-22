@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TimerComponent } from './counter';
+import { Timer } from './pomodoro';
 
 describe('Timer', () => {
-  let component: TimerComponent;
-  let fixture: ComponentFixture<TimerComponent>;
+  let component: Timer;
+  let fixture: ComponentFixture<Timer>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TimerComponent],
+      imports: [Timer],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TimerComponent);
+    fixture = TestBed.createComponent(Timer);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

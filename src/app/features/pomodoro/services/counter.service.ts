@@ -4,7 +4,7 @@ const INITIAL_TIME = 25 * 60; // 25 minutes in seconds
 
 
 @Injectable({ providedIn: 'root' })
-export class Timer implements OnDestroy {
+export class CounterService implements OnDestroy {
   timeLeft = signal(INITIAL_TIME);
   isRunning = signal(false);
 

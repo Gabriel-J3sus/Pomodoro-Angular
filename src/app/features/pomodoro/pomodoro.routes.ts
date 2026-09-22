@@ -1,6 +1,6 @@
 import { Routes } from "@angular/router";
-import { Counter } from "./components/timer/counter/counter";
+import { Pomodoro } from "./pomodoro";
 
 export const POMODORO_ROUTES: Routes = [
-  {path: '', component: Counter },
+  {path: '', component: Pomodoro },
 ]

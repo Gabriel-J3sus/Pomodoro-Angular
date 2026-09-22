@@ -1,27 +1,26 @@
 import { Component, inject } from '@angular/core';
+import { CounterService } from '@features/pomodoro/services/counter.service';
 import { Button } from '@shared/components/button/button';
-import { Timer } from '../../../services/timer.service';
 
 @Component({
   imports: [Button],
   selector: 'app-controls',
-  styleUrl: './controls.css',
   templateUrl: './controls.html',
 })
 export class Controls {
-  private readonly timerService = inject(Timer);
+  private readonly CounterService = inject(CounterService);
 
-  protected readonly isRunning = this.timerService.isRunning;
+  protected readonly isRunning = this.CounterService.isRunning;
 
   startTimer() {
-    this.timerService.start();
+    this.CounterService.start();
   }
 
   stopTimer() {
-    this.timerService.stop();
+    this.CounterService.stop();
   }
 
   resetTimer() {
-    this.timerService.reset();
+    this.CounterService.reset();
   }
 }
