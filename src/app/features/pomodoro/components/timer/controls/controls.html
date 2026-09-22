@@ -1,0 +1,15 @@
+@if (isRunning()) {
+  <div class="flex gap-4">
+    <app-button class="uppercase" size="lg" variant="secondary" (click)="stopTimer()">
+      Pause
+    </app-button>
+    
+    <app-button class="uppercase" size="lg" variant="destructive_outline" (click)="resetTimer()">
+      Reset
+    </app-button>
+  </div>
+  } @else {
+  <app-button class="uppercase" size="lg" (click)="startTimer()">
+    Start
+  </app-button>
+}

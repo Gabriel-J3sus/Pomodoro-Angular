@@ -1,12 +1,11 @@
 import { Routes } from '@angular/router';
-import { App } from './app.component';
-import { MainLayoutComponent } from './layout/index.component';
+import { MainLayout } from '@layout/index';
 
 export const routes: Routes = [
   {
     path: 'timer',
     title: 'Pomodoro Timer',
-    component: MainLayoutComponent,
+    component: MainLayout,
     children: [
       { path: '', loadChildren: () => import('./features/pomodoro/pomodoro.routes').then(m => m.POMODORO_ROUTES)},
     ]

@@ -1,0 +1,8 @@
+<app-button 
+  [type]="type()" 
+  [variant]="buttonVariant()"
+  [size]="size()">
+  <div [class]="actionIconClass()">
+    <ng-icon [name]="icon()" [size]="computedIconSize()"></ng-icon>
+  </div>
+</app-button>

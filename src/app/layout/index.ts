@@ -1,12 +1,12 @@
 import { Component } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
-import { HeaderComponent } from "./header/header.component";
-import { FooterComponent } from "./footer/footer.component";
+import { Header } from "./header/header";
+import { Footer } from "./footer/footer";
 
 @Component({
   selector: 'app-main-layout',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, FooterComponent],
+  imports: [RouterOutlet, Header, Footer],
   template: `
   <body class="flex flex-col min-h-screen">
     <app-header></app-header>
@@ -18,4 +18,4 @@ import { FooterComponent } from "./footer/footer.component";
   `
 })
 
-export class MainLayoutComponent {}
+export class MainLayout {}

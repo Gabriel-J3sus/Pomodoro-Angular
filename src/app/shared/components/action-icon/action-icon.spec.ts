@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TimerComponent } from './timer.component';
+import { ActionIcon } from './action-icon';
 
-describe('Timer', () => {
-  let component: TimerComponent;
-  let fixture: ComponentFixture<TimerComponent>;
+describe('ActionIcon', () => {
+  let component: ActionIcon;
+  let fixture: ComponentFixture<ActionIcon>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TimerComponent],
+      imports: [ActionIcon],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TimerComponent);
+    fixture = TestBed.createComponent(ActionIcon);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

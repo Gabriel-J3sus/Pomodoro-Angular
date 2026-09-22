@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-import { Pomodoro } from './pomodoro';
+import { Timer } from './timer.service';
 
-describe('Pomodoro', () => {
-  let service: Pomodoro;
+describe('Timer', () => {
+  let service: Timer;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(Pomodoro);
+    service = TestBed.inject(Timer);
   });
 
   it('should be created', () => {
