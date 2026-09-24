@@ -1,2 +1,10 @@
+<div class="w-full px-4 py-2 flex items-center justify-center gap-8 rounded-full bg-teal-100">
+
+<app-tabs  
+  [tabs]="tabs"
+  [activeTab]="'pomodoro'"
+  (tabChange)="onTabChange($event)"
+></app-tabs>
+
 <app-action-icon icon="remixSettings3Line">
 </app-action-icon>

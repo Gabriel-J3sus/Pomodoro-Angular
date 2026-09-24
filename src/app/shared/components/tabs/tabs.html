@@ -1,0 +1,19 @@
+<div class="flex items-center justify-center gap-4">
+  @for (tab of tabs(); track tab.id) {
+     @let isActive = activeTab() === tab.id;
+
+    <button
+      type="button"
+      class="rounded-md font-semibold px-3 py-1.5 transition-all duration-200 ease-in-out
+             disabled:cursor-not-allowed disabled:opacity-50"
+      [class.bg-teal-50]="isActive"
+      [class.text-teal-700]="isActive"
+      [class.text-gray-600]="!isActive"
+      [class.hover:bg-gray-100]="!isActive"
+      [disabled]="tab.disabled"
+      (click)="selectTab(tab)"
+    >
+      {{ tab.label }}
+    </button>
+  }
+</div>
