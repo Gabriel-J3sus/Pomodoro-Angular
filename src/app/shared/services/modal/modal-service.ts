@@ -1,6 +1,6 @@
 import {
   inject,
-  Injectable,
+  Service,
   Injector,
   inputBinding,
   Type,
@@ -9,7 +9,7 @@ import {
 
 import { ModalRef } from './modal-ref';
 
-@Injectable()
+@Service()
 export class ModalService {
   private container?: ViewContainerRef;
 

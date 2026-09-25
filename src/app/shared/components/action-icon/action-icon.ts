@@ -1,8 +1,9 @@
 import { Component, computed, input } from '@angular/core';
 import { Button } from '../button/button';
 import { NgIcon } from '@ng-icons/core'; // Move provideIcons usage here
-import { ActionIconSizeMapKeys, ActionIconVariant, getActionIconStyles, iconSizeMap } from './action-icon.styles';
+import { ActionIconSizeMapKeys, ActionIconVariant, getActionIconStyles } from './action-icon.styles';
 import { ButtonSize, ButtonVariant } from '../button/button.styles';
+import { Settings } from '@core/config';
 
 @Component({
   selector: 'app-action-icon',
@@ -19,7 +20,7 @@ export class ActionIcon {
   readonly type = input<HTMLButtonElement['type']>('button');
   readonly class = input<string>(''); 
   
-  protected readonly computedIconSize = computed(() => iconSizeMap[this.iconSize()]);
+  protected readonly computedIconSize = computed(() => Settings.iconSizeMap[this.iconSize()]);
 
   // Computed signal automatically updates when any dependency changes
   protected readonly actionIconClass = computed(() => getActionIconStyles(

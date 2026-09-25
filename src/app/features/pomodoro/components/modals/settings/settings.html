@@ -1,6 +1,15 @@
-<app-modal>
-  <h2 class="text-xl font-semibold">
-    Settings Modal
-  </h2>
-  
+<app-modal [dismissable]="true" title="Settings">
+
+
+  <div class="flex flex-col gap-6">
+    @for (tab of tabs; track tab.id) {
+      <app-expandable [title]="tab.label" [icon]="tab.icon" [isExpanded]="$first">
+        <ng-container [ngComponentOutlet]="tab.component"></ng-container>
+      </app-expandable>
+    }
+
+    <app-button size="md" class="ml-auto" (click)="onSave()">
+      Save
+    </app-button>
+  </div>
 </app-modal>

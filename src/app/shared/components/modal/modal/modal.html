@@ -1,5 +1,15 @@
 <div class="fixed inset-0 flex items-center justify-center bg-black/50" (click)="onBackdropClick($event)" >
-  <div class="rounded-lg bg-white p-6 shadow-xl" (click)="$event.stopPropagation()">
+  <div class="min-w-120 max-w-[50vw] rounded-lg bg-white p-6 shadow-xl" (click)="$event.stopPropagation()">
+    <div class="w-full flex items-center mb-4">
+      @if(title()) {
+        <h2 class="text-2xl font-semibold">{{ title() }}</h2>
+      }
+
+      @if(dismissable()) {
+        <ng-icon class="ml-auto" (click)="onDismiss()" name="remixCloseLargeLine" [size]="iconSizeMap['sm']"></ng-icon>
+      }
+    </div>
+
 
     <ng-content></ng-content>
 
