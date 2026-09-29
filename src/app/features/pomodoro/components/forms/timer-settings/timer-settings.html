@@ -1,1 +1,32 @@
-<p>timer-settings works!</p>
+<div [formGroup]="form()">
+
+  <div class="grid grid-cols-3 gap-8">
+    <app-input
+      [formControlName]="tabs.pomodoro.id"
+      type="number"
+      [label]="tabs.pomodoro.label"
+      [inputProps]="{
+        min: 0,
+        required: true
+      }"
+    ></app-input>
+    <app-input
+      [formControlName]="tabs.short_break.id"
+      type="number"
+      [label]="tabs.short_break.label"
+      [inputProps]="{
+        min: 0,
+        required: true
+      }"
+    ></app-input>
+    <app-input
+      [formControlName]="tabs.long_break.id"
+      type="number"
+      [label]="tabs.long_break.label"
+      [inputProps]="{
+        min: 0,
+        required: true
+      }"
+    ></app-input>
+  </div>
+</div>

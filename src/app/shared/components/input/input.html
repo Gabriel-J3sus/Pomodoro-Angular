@@ -1,0 +1,136 @@
+<div class="w-full flex flex-col gap-2 justify-start">
+
+  <!-- Label -->
+
+  @if (label()) {
+    <label
+      class="text-sm font-bold text-zinc-400 capitalize"
+    >
+      {{ label() }}
+    </label>
+  }
+
+
+  <!--
+    Input wrapper.
+
+    The border changes depending on the
+    signal controlled by the native input's
+    focus/blur events.
+  -->
+
+  <div
+    class="
+      max-h-8
+      w-full
+      flex
+      gap-2
+      px-2
+      items-center
+      justify-center
+      border-3
+      rounded-lg
+      transition-colors
+      duration-150
+    "
+
+    [class.border-teal-500]="isFocused()"
+    [class.border-zinc-400]="!isFocused()"
+  >
+
+
+    <!--
+      LEFT BUTTON
+
+      The button only exists when the parent
+      provided a leftButton.
+    -->
+
+    @if (leftButton(); as button) {
+
+      <app-action-icon
+        [icon]="button.icon"
+        [buttonVariant]="'minimal'"
+        [size]="'minimal'"
+        [iconSize]="'sm'"
+        [variant]="'minimal'"
+        class="my-2"
+
+        [class.text-teal-500]="isFocused()"
+        [class.text-zinc-400]="!isFocused()"
+
+        (click)="handleButtonClick(button)"
+      />
+
+    }
+
+
+    <!--
+      NATIVE INPUT
+
+      This is still a real HTML input.
+
+      That's important because we retain native
+      browser behavior such as keyboard handling,
+      selection, copy/paste, autocomplete, etc.
+    -->
+
+    <input
+      [type]="type()"
+      [placeholder]="placeholder()"
+      [value]="value()"
+
+      [autocomplete]="inputProps().autocomplete"
+      [name]="inputProps().name"
+      [required]="inputProps().required"
+      [readOnly]="inputProps().readonly"
+      [min]="inputProps().min"
+      [max]="inputProps().max"
+      [step]="inputProps().step"
+      [pattern]="inputProps().pattern"
+      [inputMode]="inputProps().inputmode"
+
+      [disabled]="isDisabled()"
+
+      (input)="handleInput($event)"
+      (focus)="handleFocus()"
+      (blur)="handleBlur()"
+      class="
+        h-8
+        w-full
+        min-w-0
+        text-zinc-500
+        focus:outline-none
+        bg-transparent
+      "
+    />
+
+
+    <!--
+      RIGHT BUTTON
+
+      Same API as the left button, but rendered
+      after the input.
+    -->
+
+    @if (rightButton(); as button) {
+
+      <app-action-icon
+        [icon]="button.icon"
+        [buttonVariant]="'minimal'"
+        [size]="'minimal'"
+        [iconSize]="'sm'"
+        [variant]="'minimal'"
+        class="my-2"
+
+        [class.text-teal-500]="isFocused()"
+        [class.text-zinc-400]="!isFocused()"
+
+        (click)="handleButtonClick(button)"
+      />
+
+    }
+
+  </div>
+
+</div>

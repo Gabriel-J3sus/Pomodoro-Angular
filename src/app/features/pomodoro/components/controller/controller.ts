@@ -11,10 +11,10 @@ import { SettingsModal } from '../modals/settings/settings';
   templateUrl: './controller.html',
 })
 export class Controller {
-  protected tabs = Settings.counterTabs;
+  protected tabs = Object.values(Settings.counterTabs);
   private modal = inject(ModalService)
 
-  onTabChange(tab: Tab<typeof Settings.counterTabs[number]['id']>): void {
+  onTabChange(tab: Tab<keyof typeof Settings.counterTabs>): void {
     console.log('Tab changed:', tab);
   }
 

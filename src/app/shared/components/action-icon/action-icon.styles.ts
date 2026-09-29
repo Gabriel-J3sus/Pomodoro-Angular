@@ -20,7 +20,9 @@ const variantClasses: Record<string, string> = {
   secondary_outline: 'text-slate-700',
 
   destructive: 'text-white',
-  destructive_outline: 'text-red-500'
+  destructive_outline: 'text-red-500',
+
+  minimal: 'text-zinc-500 justify-center items-center'
 
 };
 

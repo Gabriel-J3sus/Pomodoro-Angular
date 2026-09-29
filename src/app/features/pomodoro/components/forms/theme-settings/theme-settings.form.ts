@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  imports: [],
+  imports: [ReactiveFormsModule],
   selector: 'app-theme-settings',
   templateUrl: './theme-settings.html',
 })
-export class ThemeSettingsForm {}
+export class ThemeSettingsForm {
+    readonly form = input.required<FormGroup>();
+}
