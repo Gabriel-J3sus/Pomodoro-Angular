@@ -3,11 +3,10 @@ import { ModalRef } from '@shared/services/modal/modal-ref';
 import { Modal } from '@shared/components/modal/modal/modal';
 import { Expandable } from '@shared/components/expandable/expandable';
 import { Button } from '@shared/components/button/button';
-import { SoundSettingsForm } from '../../forms/sound-settings/sound-settings.form';
 import { TimerSettingsForm } from '../../forms/timer-settings/timer-settings.form';
-import { ThemeSettingsForm } from '../../forms/theme-settings/theme-settings.form';
 import { NgComponentOutlet } from '@angular/common'; 
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Settings, SettingsService } from '@features/pomodoro/services/settings/settings.service';
 
 @Component({
   imports: [Modal, Expandable, Button, NgComponentOutlet, ReactiveFormsModule],
@@ -20,21 +19,24 @@ export class SettingsModal {
   readonly data = input.required()
 
   private readonly modalRef = inject(ModalRef)
+  private readonly settingsFormService = inject(SettingsService)
+
+  private readonly initialSettings = this.settingsFormService.timerSettings()
 
   readonly form = new FormGroup({
     timer: new FormGroup({
-      pomodoro: new FormControl(''),
-      short_break: new FormControl(''),
-      long_break: new FormControl('')
+      pomodoro: new FormControl(this.initialSettings.pomodoro),
+      short_break: new FormControl(this.initialSettings.short_break),
+      long_break: new FormControl(this.initialSettings.long_break)
     }),
 
-    sound: new FormGroup({
-      // sound controls
-    }),
+    // sound: new FormGroup({
+    //   // sound controls
+    // }),
 
-    theme: new FormGroup({
-      // theme controls
-    }),
+    // theme: new FormGroup({
+    //   // theme controls
+    // }),
   });
 
   protected tabs = [
@@ -44,18 +46,18 @@ export class SettingsModal {
       icon: 'remixTimerFill',
       component: TimerSettingsForm
     },
-    {
-      id: 'sound',
-      label: 'Sound',
-      icon: 'remixSoundModuleFill',
-      component: SoundSettingsForm
-    },
-      {
-      id: 'theme',
-      label: 'Theme',
-      icon: 'remixPaletteFill',
-      component: ThemeSettingsForm
-    }
+    // {
+    //   id: 'sound',
+    //   label: 'Sound',
+    //   icon: 'remixSoundModuleFill',
+    //   component: SoundSettingsForm
+    // },
+    //   {
+    //   id: 'theme',
+    //   label: 'Theme',
+    //   icon: 'remixPaletteFill',
+    //   component: ThemeSettingsForm
+    // }
   ] as const
 
   async onClose() {
@@ -68,7 +70,8 @@ export class SettingsModal {
       return;
     }
 
-    console.log('AAAA', this.form.getRawValue());
+    const newValues = this.form.getRawValue() as Settings
+    this.settingsFormService.update(newValues)
 
     this.modalRef.close(this.form.getRawValue());
   }

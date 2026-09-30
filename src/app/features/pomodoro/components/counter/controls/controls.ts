@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { CounterService } from '@features/pomodoro/services/counter.service';
+import { CounterService } from '@features/pomodoro/services/counter/counter.service';
 import { Button } from '@shared/components/button/button';
 
 @Component({

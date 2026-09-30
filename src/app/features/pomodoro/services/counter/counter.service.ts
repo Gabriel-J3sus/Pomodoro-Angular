@@ -1,14 +1,36 @@
-import { computed, Injectable, OnDestroy, signal } from '@angular/core';
+import { computed, effect, inject, linkedSignal, OnDestroy, Service, signal } from '@angular/core';
+import { ControllerService } from '../controller/controller.service';
+import { SettingsService } from '../settings/settings.service';
 
-const INITIAL_TIME = 25 * 60; // 25 minutes in seconds
 
-
-@Injectable({ providedIn: 'root' })
+@Service()
 export class CounterService implements OnDestroy {
-  timeLeft = signal(INITIAL_TIME);
+  protected readonly controllerService = inject(ControllerService);
+  private readonly settingsService = inject(SettingsService)
+
+  initialTime = computed(() => {
+    const tab = this.controllerService.currentTab();
+    const settings = this.settingsService.timerSettings();
+
+    return settings[tab.id] * 60;
+  });
+
+  timeLeft = linkedSignal(() => this.initialTime());
+
   isRunning = signal(false);
 
   private intervalId = null as number | null;
+
+  constructor() {
+    // This is the legal place to run side-effects when the tab changes!
+    effect(() => {
+      // We read the currentTab signal so this effect tracks it
+      this.controllerService.currentTab();
+      
+      // Stop the timer whenever the tracked tab changes
+      this.stop();
+    });
+  }
 
   // Automatically format seconds to MM:SS using a computed signal
   formattedTimeLeft = computed(() => {
@@ -46,7 +68,7 @@ export class CounterService implements OnDestroy {
   reset() {
     console.log('Timer reset');
     this.stop();
-    this.timeLeft.set(INITIAL_TIME);
+    this.timeLeft.set(this.initialTime());
   }
 
   ngOnDestroy() {

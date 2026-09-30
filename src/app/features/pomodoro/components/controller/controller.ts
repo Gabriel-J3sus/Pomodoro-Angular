@@ -4,6 +4,7 @@ import { ActionIcon } from '@shared/components/action-icon/action-icon';
 import { Tab, Tabs } from '@shared/components/tabs/tabs';
 import { ModalService } from '@shared/services/modal/modal-service';
 import { SettingsModal } from '../modals/settings/settings';
+import { ControllerService } from '@features/pomodoro/services/controller/controller.service';
 
 @Component({
   imports: [ActionIcon, Tabs],
@@ -11,11 +12,11 @@ import { SettingsModal } from '../modals/settings/settings';
   templateUrl: './controller.html',
 })
 export class Controller {
-  protected tabs = Object.values(Settings.counterTabs);
   private modal = inject(ModalService)
-
+  protected controllerService = inject(ControllerService)
+  
   onTabChange(tab: Tab<keyof typeof Settings.counterTabs>): void {
-    console.log('Tab changed:', tab);
+    this.controllerService.onTabChange(Settings.counterTabs[tab.id])
   }
 
   async onOpenSettings() {

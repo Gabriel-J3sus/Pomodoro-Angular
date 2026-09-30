@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Controls } from './controls/controls';
-import { CounterService } from '@features/pomodoro/services/counter.service';
-
+import { CounterService } from '@features/pomodoro/services/counter/counter.service';
 @Component({
   imports: [Controls],
   selector: 'app-counter',
